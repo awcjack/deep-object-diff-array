@@ -61,6 +61,8 @@
   };
 
   var deletedDiff = function deletedDiff(lhs, rhs) {
+    var simpleArray = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
     if (lhs === rhs || !(0, _utils.isObject)(lhs) || !(0, _utils.isObject)(rhs)) return {};
 
     var l = (0, _utils.properObject)(lhs);
@@ -73,10 +75,13 @@
           if (oldFields.length === 0) {
             return acc;
           }
-          var oldFieldsIndex = _lodash2.default.map(oldFields, function (o) {
+          if (simpleArray) {
+            return _extends({}, acc, _defineProperty({}, key, { before: _lodash2.default.uniq(_lodash2.default.difference(l[key], r[key])) }));
+          }
+          var oldFieldsIndices = _lodash2.default.map(oldFields, function (o) {
             return {
               content: o,
-              index: []
+              indices: []
             };
           });
 
@@ -85,16 +90,16 @@
               return _lodash2.default.isEqual(o, l[key][i]);
             });
             if (index !== -1) {
-              oldFieldsIndex[index].index.push(i);
+              oldFieldsIndices[index].indices.push(i);
             }
           };
 
           for (var i = 0; i < l[key].length; i++) {
             _loop(i);
           }
-          return _extends({}, acc, _defineProperty({}, key, { before: oldFieldsIndex }));
+          return _extends({}, acc, _defineProperty({}, key, { before: oldFieldsIndices }));
         }
-        var difference = deletedDiff(l[key], r[key]);
+        var difference = deletedDiff(l[key], r[key], simpleArray);
 
         if ((0, _utils.isObject)(difference) && (0, _utils.isEmpty)(difference)) return acc;
 

@@ -30,10 +30,11 @@
   }
 
   var detailedDiff = function detailedDiff(lhs, rhs) {
+    var simpleArray = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
     return {
-      added: (0, _added2.default)(lhs, rhs),
-      deleted: (0, _deleted2.default)(lhs, rhs),
-      updated: (0, _updated2.default)(lhs, rhs)
+      added: (0, _added2.default)(lhs, rhs, simpleArray),
+      deleted: (0, _deleted2.default)(lhs, rhs, simpleArray),
+      updated: (0, _updated2.default)(lhs, rhs, simpleArray)
     };
   };
 
