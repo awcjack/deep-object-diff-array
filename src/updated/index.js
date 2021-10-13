@@ -36,13 +36,18 @@ const updatedDiff = (lhs, rhs, simpleArray = true) => {
           const allKeysObject = _.reduce(allKeys, (acc, curr) => (acc[curr] = [], acc), {})
           for (let i = 0; i < leftArray.length; i++) {
             if (!_.isEqual(leftArray[i], rightArray[i])) {
-              let index = _.findIndex(r[key], value => _.isEqual(value, rightArray[i]))
+              let newIndex = _.findIndex(r[key], value => _.isEqual(value, rightArray[i]))
               for (let j = 0; j < allKeysCounter[rightArray[i]]; j++) {
-                index = _.findIndex(r[key], value => _.isEqual(value, rightArray[i], index + 1))
+                newIndex = _.findIndex(r[key], value => _.isEqual(value, rightArray[i], newIndex + 1))
+              }
+              let oldIndex = _.findIndex(l[key], value => _.isEqual(value, rightArray[i]))
+              for (let j = 0; j < allKeysCounter[rightArray[i]]; j++) {
+                oldIndex = _.findIndex(l[key], value => _.isEqual(value, rightArray[i], oldIndex + 1))
               }
               allKeysObject[rightArray[i]].push({
                 counter: allKeysCounter[rightArray[i]],
-                newIndex: index
+                newIndex,
+                oldIndex,
               })
             }
             allKeysCounter[rightArray[i]] = allKeysCounter[rightArray[i]]++

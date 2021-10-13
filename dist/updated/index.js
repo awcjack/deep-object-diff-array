@@ -108,17 +108,26 @@
               var _loop = function _loop(i) {
                 if (!_lodash2.default.isEqual(leftArray[i], rightArray[i])) {
                   (function () {
-                    var index = _lodash2.default.findIndex(r[key], function (value) {
+                    var newIndex = _lodash2.default.findIndex(r[key], function (value) {
                       return _lodash2.default.isEqual(value, rightArray[i]);
                     });
                     for (var j = 0; j < allKeysCounter[rightArray[i]]; j++) {
-                      index = _lodash2.default.findIndex(r[key], function (value) {
-                        return _lodash2.default.isEqual(value, rightArray[i], index + 1);
+                      newIndex = _lodash2.default.findIndex(r[key], function (value) {
+                        return _lodash2.default.isEqual(value, rightArray[i], newIndex + 1);
+                      });
+                    }
+                    var oldIndex = _lodash2.default.findIndex(l[key], function (value) {
+                      return _lodash2.default.isEqual(value, rightArray[i]);
+                    });
+                    for (var _j = 0; _j < allKeysCounter[rightArray[i]]; _j++) {
+                      oldIndex = _lodash2.default.findIndex(l[key], function (value) {
+                        return _lodash2.default.isEqual(value, rightArray[i], oldIndex + 1);
                       });
                     }
                     allKeysObject[rightArray[i]].push({
                       counter: allKeysCounter[rightArray[i]],
-                      newIndex: index
+                      newIndex: newIndex,
+                      oldIndex: oldIndex
                     });
                   })();
                 }
