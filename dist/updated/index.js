@@ -165,7 +165,7 @@
               }
 
               return {
-                v: _extends({}, acc, _defineProperty({}, key, { after: allKeysObject }))
+                v: _extends({}, acc, _defineProperty({}, key, { after: [allKeysObject] }))
               };
             }
           }();

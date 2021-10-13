@@ -255,7 +255,7 @@ describe('.detailedDiff', () => {
       test.each([
         [{ a: { a: ["a", "b", "c"] } }, { a: { a: ["a", "c", "b"] } }],
       ])('returns inserted and removed array element of right hand side (%s, %s)', (lhs, rhs) => {
-        expect(detailedDiff(lhs, rhs, false)).toEqual({ "added": {}, "deleted": {}, "updated": { a: { a: { after: { b: [{ counter: 0, newIndex: 2, oldIndex: 1 }], c: [{ counter: 0, newIndex: 1, oldIndex: 2 }] } } } } });
+        expect(detailedDiff(lhs, rhs, false)).toEqual({ "added": {}, "deleted": {}, "updated": { a: { a: { after: [{ b: [{ counter: 0, newIndex: 2, oldIndex: 1 }], c: [{ counter: 0, newIndex: 1, oldIndex: 2 }] }] } } } });
       });
     });
 

@@ -57,7 +57,7 @@ const updatedDiff = (lhs, rhs, simpleArray = true) => {
               delete allKeysObject[key]
             }
           }
-          return { ...acc, [key]: { after: allKeysObject } }
+          return { ...acc, [key]: { after: [allKeysObject] } }
         }
       }
       const difference = updatedDiff(l[key], r[key], simpleArray);
