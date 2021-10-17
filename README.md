@@ -1,4 +1,5 @@
 <div align="center">
+  <h1>Deprecated</h1>
   <h1>Mirgated to <a href="https://gitlab.com/awcjack/deep-object-diff-array">gitlab</a> for cicd</h1>
   <h1>deep-object-diff</h1>
 
